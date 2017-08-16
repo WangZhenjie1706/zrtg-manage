@@ -1,0 +1,41 @@
+h3(align='center' style='color:#576f95')
+    | 设备采购信息管理系统
+hr
+button.btn.btn-default.btn-block#a1(style='background:#576f95;color:#ffffff')
+    | 新建项目采购信息
+button.btn.btn-default.btn-block#a2(style='background:#576f95;color:#ffffff')
+    | 管理项目采购信息
+hr
+h3(align='center' style='color:#576f95')
+    | 设备管理系统
+button.btn.btn-default.btn-block(data-toggle='modal' data-target='#modal2' style='background:#576f95;color:#ffffff')
+    | 新增设备信息
+button.btn.btn-default.btn-block#a3(style='background:#576f95;color:#ffffff')
+    | 查询设备信息
+hr
+h3(align='center' style='color:#576f95')
+    | 系统操作
+button.btn.btn-default.btn-block(data-toggle='modal' data-target='#modal1' style='background:#576f95;color:#ffffff')
+    | 添加用户
+button.btn.btn-default.btn-block#a4(style='background:#576f95;color:#ffffff')
+    | 管理用户
+hr
+button.btn.btn-danger.btn-block#a5
+    | 退出系统
+script(type='text/javascript').
+    $('#a1').click(function () {
+        window.location.href = 'input1'
+    });
+    $('#a2').click(function () {
+        window.location.href='detail'
+    });
+    $('#a3').click(function () {
+        window.location.href = 'equip'
+    });
+    $('#a4').click(function () {
+        window.location.href = 'user'
+    });
+    $('#a5').click(function () {
+        window.location.href = 'login'
+    });
+

@@ -1,0 +1,99 @@
+extends index
+block head
+    title= '项目采购信息'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备采购信息详情
+block content
+    table.table
+            thead
+                tr
+                    th
+                        | 项目名称
+                    th
+                        | 预算金额
+                    th
+                        | 实际金额
+                    th
+                        | 付款状态
+                    th
+                        | 日期
+                    th
+                        | 详情
+            tbody
+                tr
+                    td
+                        | a
+                    td
+                        | b
+                    td
+                        | c
+                    td
+                        | d
+                    td
+                        | e
+                    td
+                        button.btn.btn-sm.z1(style='background:#576f95;color:#ffffff')
+                            | 详情
+                tr
+                    td
+                        | a
+                    td
+                        | b
+                    td
+                        | c
+                    td
+                        | d
+                    td
+                        | e
+                    td
+                        button.btn.btn-sm.z1(style='background:#576f95;color:#ffffff')
+                            | 详情
+                tr
+                    td
+                        | a
+                    td
+                        | b
+                    td
+                        | c
+                    td
+                        | d
+                    td
+                        | e
+                    td
+                        button.btn.btn-sm.z1(style='background:#576f95;color:#ffffff')
+                            | 详情
+                tr
+                    td
+                        | a
+                    td
+                        | b
+                    td
+                        | c
+                    td
+                        | d
+                    td
+                        | e
+                    td
+                        button.btn.btn-sm.z1(style='background:#576f95;color:#ffffff')
+                            | 详情
+                tr
+                    td
+                        | a
+                    td
+                        | b
+                    td
+                        | c
+                    td
+                        | d
+                    td
+                        | e
+                    td
+                        button.btn.btn-sm.z1(style='background:#576f95;color:#ffffff')
+                            | 详情
+            script(type='text/javascript').
+                $('.z1').click(function () {
+                    window.location.href='detail2'
+                })

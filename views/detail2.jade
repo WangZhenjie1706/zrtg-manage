@@ -1,0 +1,94 @@
+extends index
+block head
+    title= '项目采购信息'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 项目详情
+block content
+    ul#myTab1.nav.nav-tabs
+        li.active
+            a(href='#c1', data-toggle='tab')
+                | 项目信息
+        li
+            a(href='#c2', data-toggle='tab')
+                | 党委会纪要详情
+        li
+            a(href='#c3', data-toggle='tab')
+                | 预审单详情
+        li.dropdown
+            a#myTabDrop1.dropdown-toggle(href='#', data-toggle='dropdown')
+                | 标段选择
+                b.caret
+            ul.dropdown-menu(role='menu', aria-labelledby='myTabDrop1')
+                li
+                    a(href='#c4', tabindex='-1', data-toggle='tab')
+                        | 标段1
+                li
+                    a(href='#c5', tabindex='-1', data-toggle='tab')
+                        | 标段2
+    #myTabContent.tab-content
+        #c1.tab-pane.fade.in.active
+            table.table
+                thead
+                    tr
+                        th
+                            | 项目名称
+                        th
+                            | 请示标题
+                        th
+                            | 请示提交单位
+                        th
+                            | 请示预算
+                        th
+                            | 批文编号
+                        th
+                            | 批文日期
+                        th
+                            | 联系人电话
+                        th
+                            | 联系人姓名
+            hr
+            h4(align='center')
+                | 相关文件下载
+        #c2.tab-pane.fade
+            table.table
+                thead
+                    tr
+                        th
+                            | 党委会会议编号
+                        th
+                            | 党委会纪要日期
+            hr
+            h4(align='center')
+                | 相关文件下载
+        #c3.tab-pane.fade
+            table.table
+                thead
+                    tr
+                        th
+                            | 项目名称
+                        th
+                            | 项目预算
+                        th
+                            | 预审单提交日期
+            p(align='center')
+                | 相关文件下载
+        #c4.tab-pane.fade
+            ul#myTaba.nav.nav-tabs
+                li.active
+                    a(href='#d1', data-toggle='tab')
+                        | 管委会纪要信息
+                li
+                    a(href='#d2', data-toggle='tab')
+                        | 合同详情
+                li
+                    a(href='#d3', data-toggle='tab')
+                        | 资产领用单详情
+                #myTabaContent.tab-content
+
+
+
+
+

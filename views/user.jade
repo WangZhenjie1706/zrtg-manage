@@ -1,0 +1,65 @@
+extends index
+block head
+    title= '用户信息'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 用户信息详情
+block content
+    table.table
+        thead
+            tr
+                th
+                    | 账号
+                th
+                    | 密码
+                th
+                    | 权限
+                th
+                    | 修改
+        tbody
+            tr
+                td
+                    | a
+                td
+                    | b
+                td
+                    | c
+                td
+                    button.btn.btn-sm(style='background:#576f95;color:#ffffff')
+                        | 修改
+            tr
+                td
+                    | a
+                td
+                    | b
+                td
+                    | c
+                td
+                    button.btn.btn-sm(style='background:#576f95;color:#ffffff')
+                        | 修改
+            tr
+                td
+                    | a
+                td
+                    | b
+                td
+                    | c
+                td
+                    button.btn.btn-sm(style='background:#576f95;color:#ffffff')
+                        | 修改
+            tr
+                td
+                    | a
+                td
+                    | b
+                td
+                    | c
+                td
+                    button.btn.btn-sm(style='background:#576f95;color:#ffffff')
+                        | 修改
+        script(type='text/javascript').
+            $('.btn-info').click(function () {
+                window.location.href='detail2'
+            })

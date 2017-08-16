@@ -1,0 +1,82 @@
+extends index
+block head
+    title= '采购信息-基本项目信息'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备采购信息导入
+block content
+    h3(align='center')
+        | 步骤1-导入项目基本信息
+    .col-md-6.col-md-offset-3(style='width:60%')
+        .progress.progress-striped.active(style='color:#576f95')
+            .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 0%;')
+    br
+    hr
+    form.form-horizontal(role='form')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 项目名称：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 请示提交单位：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 请示标题：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 请示预算：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 请示日期：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 联系人姓名：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 联系人电话：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 批文编号：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 批文日期：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group(align='center')
+            .btn.btn-block(style='width:31%;background:#576f95;color:#ffffff')
+                | 保存数据
+    hr
+    form(enctype="multipart/form-data" action="/upload" method="post")
+        .form-group(align='center')
+            input.btn(type='file' value='请选择文件' name='avatar'
+            style='width:32%;background:#576f95;color:#ffffff')
+            input.btn(type='submit' value='上传'
+            style='width:32%;background:#576f95;color:#ffffff;margin-top:5px')
+    .n(align='center')
+        .btn.btn-block#b1(style='width:32%;background:#576f95;color:#ffffff' )
+            | 下一步
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $('#b1').click(function () {
+                window.location.href = "input2";
+            });
+            console.log(path);
+        })

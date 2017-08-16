@@ -1,0 +1,114 @@
+doctype html
+html
+    head
+        block head
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript' src='/javascripts/jquery-3.2.1.min.js')
+        link(rel="stylesheet" type="text/css" href="DataTables-1.10.15/media/css/jquery.dataTables.css")
+        link(rel='stylesheet', href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
+        script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
+        script(type="text/javascript" charset="utf8" src="DataTables-1.10.15/media/js/jquery.dataTables.js")
+        script(src='/javascripts/vue.js')
+    body(style='background:#f0f0f0')
+        .navbar.navbar-default(style='background:#47546f;display:flex;justify-content:center;border-radius:0;border:1px')
+            h1(style='color:#ffffff')
+                | 设备信息管理系统
+        .col-md-3(style='margin:0;padding:0')
+            .panel-default
+                .panel-heading(style='background:#576F95;border:1px')
+                    h2(align='center' style='color:#ffffff')
+                        | 操作
+                .panel-body(style='background:#b3b4b7;height:1500px')
+                    block sidebar
+
+        .col-md-9(style='padding-right:0;padding-left:20px')
+            .panel-default
+                .panel-heading(style='background:#576f95;border:1px')
+                    block title1
+                .panel-body(style='background:#b3b4b7;height:1500px')
+                    block content
+        .mode#modal1(tabindex='-1' role='dialog' aria-labelledby="label1"
+        aria-hidden="true" class='modal fade' style='width:auto')
+            .modal-dialog
+                .modal-content(style='border-radius:0')
+                    .modal-header(style='background:#576f95')
+                        h4.modal-title#label1(style='color:#ffffff')
+                            | 新增一条用户信息
+                    .modal-body
+                        form.form-horizontal(role='form')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 权限：
+                                .col-sm-6
+                                    select.form-control
+                                        option
+                                            | 管理员
+                                        option
+                                            | 用户1
+                                        option
+                                            | 用户2
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 账户：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 密码：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 确认密码：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal" type='button')
+                            | 取消
+                        button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
+                            | 保存
+        .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
+        aria-hidden="true" class='modal fade' style='width:auto')
+            .modal-dialog
+                .modal-content(style='border-radius:0')
+                    .modal-header(style='background:#576f95')
+                        h4.modal-title#label2(style='color:#ffffff')
+                            | 新增一条设备信息
+                    .modal-body(style='border-radius:0')
+                        form.form-horizontal(role='form')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 设备类型：
+                                .col-sm-6
+                                    select.form-control
+                                        option
+                                            | U盘
+                                        option
+                                            | 耗材
+                                        option
+                                            | 硬件
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 库存量：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 型号：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 资产号：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 全网资产号：
+                                .col-sm-6
+                                    input.form-control(type='text')
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal" type='button')
+                            | 取消
+                        button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
+                            | 保存

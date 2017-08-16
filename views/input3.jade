@@ -1,0 +1,94 @@
+extends index
+block head
+    title= '采购信息-预审单'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备采购信息导入
+block content
+    h3(align='center')
+        | 步骤3-导入预审单
+    .col-md-6.col-md-offset-3(style='width:60%')
+        .progress.progress-striped.active(style='color:#576f95')
+            .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 40%;')
+    br
+    hr
+    form.form-horizontal(role='form')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 项目名称：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 项目预算：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 提交日期：
+            .col-sm-6
+                input.form-control(type='text')
+        hr
+        .form-group(align='center')
+            h4(align='center')
+                | 添加标段
+            table.table(style='width:60%')
+                thead
+                    tr
+                        th
+                            | 标段名称
+                        th
+                            | 标段金额
+                tbody
+                    tr
+                        td
+                            input.form-control.b1
+                        td
+                            input.form-control.b2
+            .form-group(align='center')
+                .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
+                    | 添加
+            h4(align='center')
+                | 已添加的标段
+        .form-group(align='center')
+            table.table.c1(style='width:60%' align='center')
+                thead
+                    tr
+                        th
+                            | 标段名称
+                        th
+                            | 标段金额
+                        th
+                            | 操作
+                tbody
+        hr
+        .form-group(align='center')
+            button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
+                | 上传预审单
+    .form-group(align='center')
+        button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+            | 保存并进入下一步
+        script(type='text/javascript').
+            $(document).ready(function () {
+                $('#b1').click(function () {
+                    window.location.href = "input4";
+                });
+                $('.a1').click(function () {
+                    var b1 = $('.b1').val();
+                    var b2 = $('.b2').val();
+                    var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td><button class='btn" +
+                        " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
+                    if (b1 !=='' && b2 !== ''){
+                        $(".c1").append(newRow);
+                    }
+                    else
+                    {
+                        alert('要添加的标段名称与金额均不可为空！')
+                    }
+                });
+                $(document).on('click', '#a4', function () {
+                    $(this).parents('tr').remove();
+                })
+            })

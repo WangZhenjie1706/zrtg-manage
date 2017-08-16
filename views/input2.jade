@@ -1,0 +1,43 @@
+extends index
+block head
+    title= '设备采购-党委会纪要'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备采购信息导入
+block content
+    h3(align='center')
+        | 步骤2-导入党委会纪要信息
+    .col-md-6.col-md-offset-3(style='width:60%')
+        .progress.progress-striped.active(style='color:#576f95')
+            .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 20%;')
+    br
+    hr
+    form.form-horizontal(role='form')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 项目名称：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 党委会议编号：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 打印日期：
+            .col-sm-6
+                input.form-control(type='text')
+        hr
+        .form-group(align='center')
+            button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
+                | 上传文件
+    .form-group(align='center')
+        button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+            | 保存并进入下一步
+        script(type='text/javascript').
+            $('#b1').click(function () {
+                window.location.href = "input3";
+            })
