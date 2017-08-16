@@ -7,7 +7,7 @@ block title1
     h2(align='center' style='color:#ffffff')
         | 项目详情
 block content
-    ul#myTab1.nav.nav-tabs
+    ul#myTab.nav.nav-tabs
         li.active
             a(href='#c1', data-toggle='tab')
                 | 项目信息
@@ -21,13 +21,13 @@ block content
             a#myTabDrop1.dropdown-toggle(href='#', data-toggle='dropdown')
                 | 标段选择
                 b.caret
-            ul.dropdown-menu(role='menu', aria-labelledby='myTabDrop1')
-                li
-                    a(href='#c4', tabindex='-1', data-toggle='tab')
-                        | 标段1
-                li
-                    a(href='#c5', tabindex='-1', data-toggle='tab')
-                        | 标段2
+                ul.dropdown-menu(role='menu', aria-labelledby='myTabDrop1')
+                    li
+                        a(href='#c4', tabindex='-1', data-toggle='tab')
+                            | 国际频道网络交换设备
+                    li
+                        a(href='#c5', tabindex='-1', data-toggle='tab')
+                            | 国际频道非编网络集成
     #myTabContent.tab-content
         #c1.tab-pane.fade.in.active
             table.table
@@ -46,11 +46,29 @@ block content
                         th
                             | 批文日期
                         th
-                            | 联系人电话
-                        th
                             | 联系人姓名
+                        th
+                            | 联系人电话
+                tbody
+                    tr
+                        td
+                            | 国际频道演播系统及非编网络高清化改造升级事宜
+                        td
+                            | 关于国际频道演播系统及非编网络高清化改造升级事宜的请示
+                        td
+                            | 全台网项目组
+                        td
+                            | 735万元
+                        td
+                            | 【2016】5号
+                        td
+                            | 2016.02.22
+                        td
+                            | 小王
+                        td
+                            | 123456789
             hr
-            h4(align='center')
+            h3(align='center')
                 | 相关文件下载
         #c2.tab-pane.fade
             table.table
@@ -60,8 +78,14 @@ block content
                             | 党委会会议编号
                         th
                             | 党委会纪要日期
+                tbody
+                    tr
+                        td
+                            | 【2016】5号
+                        td
+                            | 2016.02.22
             hr
-            h4(align='center')
+            h3(align='center')
                 | 相关文件下载
         #c3.tab-pane.fade
             table.table
@@ -73,7 +97,15 @@ block content
                             | 项目预算
                         th
                             | 预审单提交日期
-            p(align='center')
+                tbody
+                    tr
+                        td
+                            | 集团全媒体统一流程管理平台
+                        td
+                            | 600万
+                        td
+                            | 2015.05.12
+            h3(align='center')
                 | 相关文件下载
         #c4.tab-pane.fade
             ul#myTaba.nav.nav-tabs
@@ -94,13 +126,281 @@ block content
                                     th
                                         | 管委会会议编号
                                     th
+                                        | 中标单位
+                                    th
+                                        | 中标日期
+                            tbody
+                                tr
+                                    td
+                                        | 第19期
+                                    td
+                                        | 北京中科大洋
+                                    td
+                                        | 2016.05.29
+                        hr
+                        h3(align='center')
+                            | 相关文件下载
+                    #d2.tab-pane.fade.in.active(align='center')
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 标段名称
+                                    th
+                                        | 合同标号
+                                    th
+                                        | 合同名称
+                                    th
+                                        | 合同金额
+                            tbody
+                        h4
+                            | 付款情况
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 阶段
+                                    th
+                                        | 百分比
+                                    th
+                                        | 付款时间
+                                    th
+                                        | 单次付款金额
+                                    th
+                                        | 状态
+                                    th
+                                        | 修改状态
+                            tbody
+                                tr
+                                    td
+                                        | 第一阶段
+                                    td
+                                        | 30%
+                                    td
+                                        | 01.01
+                                    td
+                                        | 10万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                                tr
+                                    td
+                                        | 第二阶段
+                                    td
+                                        | 30%
+                                    td
+                                        | 04.01
+                                    td
+                                        | 10万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                                tr
+                                    td
+                                        | 第三阶段
+                                    td
+                                        | 40%
+                                    td
+                                        | 08.01
+                                    td
+                                        | 13万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                        hr
+                        h3(align='center')
+                            | 相关文件下载
+                    #d3.tab-pane.fade.in.active
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 存放地点
+                                    th
+                                        | 设别类型
+                                    th
+                                        | 设备型号
+                                    th
+                                        | 资产号
+                                    th
+                                        | 全网资产号
+                                    th
+                                        | 库存量
+                                    th
+                                        | 已使用
+                                    th
+                                        | 剩余量
+                                    th
+                                        | 损坏量
+                                    th
+                                        | 损坏及使用备注
+                            tbody
+                        h3(align='center')
+                            | 相关文件下载
+        #c5.tab-pane.fade
+            ul#myTabb.nav.nav-tabs
+                li.active
+                    a(href='#d4', data-toggle='tab')
+                        | 管委会纪要信息
+                li
+                    a(href='#d5', data-toggle='tab')
+                        | 合同详情
+                li
+                    a(href='#d6', data-toggle='tab')
+                        | 资产领用单详情
+                #myTabbContent.tab-content
+                    #d4.tab-pane.fade.in.active
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 管委会会议编号
+                                    th
                                         | 项目名称
                                     th
                                         | 标段名称
                                     th
-                                        | 标段名称
-                        p(align='center')
+                                        | 中标单位
+                                    th
+                                        | 中标日期
+                            tbody
+                        hr
+                        h3(align='center')
                             | 相关文件下载
+                    #d5.tab-pane.fade.in.active(align='center')
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 标段名称
+                                    th
+                                        | 合同标号
+                                    th
+                                        | 合同名称
+                                    th
+                                        | 合同金额
+                            tbody
+                        h4
+                            | 付款情况
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 阶段
+                                    th
+                                        | 百分比
+                                    th
+                                        | 付款时间
+                                    th
+                                        | 单次付款金额
+                                    th
+                                        | 状态
+                                    th
+                                        | 修改状态
+                            tbody
+                                tr
+                                    td
+                                        | 第一阶段
+                                    td
+                                        | 30%
+                                    td
+                                        | 01.01
+                                    td
+                                        | 10万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                                tr
+                                    td
+                                        | 第二阶段
+                                    td
+                                        | 30%
+                                    td
+                                        | 04.01
+                                    td
+                                        | 10万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                                tr
+                                    td
+                                        | 第三阶段
+                                    td
+                                        | 40%
+                                    td
+                                        | 08.01
+                                    td
+                                        | 13万元
+                                    td
+                                        select.form-control
+                                            option
+                                                | 未完成
+                                            option
+                                                | 已完成
+                                    td
+                                        .btn.btn-default
+                                            | 修改
+                        hr
+                        h3(align='center')
+                            | 相关文件下载
+                    #d6.tab-pane.fade.in.active
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 存放地点
+                                    th
+                                        | 设别类型
+                                    th
+                                        | 设备型号
+                                    th
+                                        | 资产号
+                                    th
+                                        | 全网资产号
+                                    th
+                                        | 库存量
+                                    th
+                                        | 已使用
+                                    th
+                                        | 剩余量
+                                    th
+                                        | 损坏量
+                                    th
+                                        | 损坏及使用备注
+                            tbody
+                        h3(align='center')
+                            | 相关文件下载
+
 
 
 
