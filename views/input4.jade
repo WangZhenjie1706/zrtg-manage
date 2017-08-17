@@ -46,13 +46,16 @@ block content
                 | 中标日期：
             .col-sm-6
                 input.form-control(type='text')
-        hr
+        .form-group(align='center')
+            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+                | 保存
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
                 | 上传文件
+        hr
     .form-group(align='center')
         button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
-            | 保存并进入下一步
+            | 下一步
         script(type='text/javascript').
             $('#b1').click(function () {
                 window.location.href = "input5";

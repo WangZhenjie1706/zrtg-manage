@@ -7,6 +7,7 @@ block title1
     h2(align='center' style='color:#ffffff')
         | 设备信息详情
 block content
+    hr
     table.table
         thead
             tr
@@ -15,13 +16,26 @@ block content
                 th
                     | 库存量
                 th
-                    | 型号
-                th
                     | 资产号
                 th
                     | 全网资产号
                 th
-                    | 设备类型
+                    .dropdown
+                        button#dropdownMenu1.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+                            | 设备类型
+                            span.caret
+                        ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+                            li(role='presentation')
+                                a(role='menuitem', tabindex='-1', href='#') 硬盘
+                            li(role='presentation')
+                                a(role='menuitem', tabindex='-1', href='#') U盘
+                            li(role='presentation')
+                                a(role='menuitem', tabindex='-1', href='#') 服务器
+                            li(role='presentation')
+                                a(role='menuitem', tabindex='-1', href='#') 耗材
+
+                th
+                    | 详情
         tbody
             tr
                 td

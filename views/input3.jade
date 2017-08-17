@@ -30,7 +30,6 @@ block content
                 | 提交日期：
             .col-sm-6
                 input.form-control(type='text')
-        hr
         .form-group(align='center')
             h4(align='center')
                 | 添加标段
@@ -63,13 +62,16 @@ block content
                         th
                             | 操作
                 tbody
-        hr
+        .form-group(align='center')
+            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+                | 保存
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
                 | 上传预审单
+        hr
     .form-group(align='center')
         button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
-            | 保存并进入下一步
+            | 下一步
         script(type='text/javascript').
             $(document).ready(function () {
                 $('#b1').click(function () {

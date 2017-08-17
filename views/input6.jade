@@ -71,7 +71,6 @@ block content
                 | 签订日期：
             .col-sm-6
                 input.form-control(type='text')
-        hr
         .form-group(align='center')
             h4(align='center')
                 | 添加付款方式
@@ -162,11 +161,15 @@ block content
                     var b2 = $('.b2').val();
                     var b3 = $('.b3').val();
                     var b4 = $('.b4').val();
-                    var b5 = $('.b5').val();
                     var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td>" + b3 + "</td>" +
                         "<td>" + b4 + "</td><td><button class='btn" +
                         " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
-                    $(".c1").append(newRow);
+                    if(b3 == '' || b4 == ''){
+                        alert('请填入完整的付款方式')
+                    }
+                    else {
+                        $(".c1").append(newRow);
+                    }
                 });
                 $(document).on('click', '#a4', function () {
                     $(this).parents('tr').remove();
