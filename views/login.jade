@@ -21,12 +21,12 @@ html
                             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                                 | 账号：
                             .col-sm-6
-                                input.form-control(type='text' placeholder='请输入账号' style='')
+                                input.form-control#username(type='text' placeholder='请输入账号' style='')
                         .form-group
                             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                                 | 密码：
                             .col-sm-6
-                                input.form-control(type='password' placeholder='请输入密码' style='')
+                                input.form-control#userpwd(type='password' placeholder='请输入密码' style='')
                     hr
                     .form-group(align='center')
                         button.btn.btn-default.btn-block#a1(style='width:60%;color:#576f95')
@@ -34,6 +34,53 @@ html
 
 
     script(type='text/javascript').
-        $('#a1').click(function () {
-            window.location.href='detail'
+        $(document).ready(function () {
+            var username = $("#username");
+            var userpwd = $("userpwd");
+            $('#a1').click(function () {
+                if (username.val() == '' || userpwd.val() == '')
+                {
+                    alert('账号与密码不能为空')
+                }
+                else {
+                    $.ajax({
+                        url: "/login/userlogin",
+                        data: {
+                            username: $("#username").val(),
+                            userpwd: $("#userpwd").val()
+                        },
+                        type: "POST",
+                        timeout: 36000,
+                        dataType: "text",
+                        success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            if (dataJson.lv == 1) {
+                                alert("欢迎登陆，管理员！");
+                                window.location.href='detail'
+                            }
+                            else if (dataJson.lv == 2) {
+                                alert("欢迎lv-2");
+                            }
+                            else if (dataJson.lv == 3) {
+                                alert("欢迎lv-3");
+                            }
+                            else if (dataJson.code == 300) {
+                                alert("账号不存在，请重新输入！");
+                            }
+                            else if (dataJson.code == 400) {
+                                alert("密码有误，请重新输入！");
+                            } else {
+                                alert("登录出错！");
+                            }
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert("error:" + textStatus);
+                        }
+
+                    })
+                }
+
+
+            });
         })
+

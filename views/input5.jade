@@ -1,6 +1,6 @@
 extends index
 block head
-    title= '采购信息-资产领用单'
+    title= '采购信息-合同'
 block sidebar
     include sidebar1
 block title1
@@ -8,7 +8,7 @@ block title1
         | 设备采购信息导入
 block content
     h3(align='center')
-        | 步骤5-导入资产领用单
+        | 步骤5-导入合同
     .col-md-6.col-md-offset-3(style='width:60%')
         .progress.progress-striped.active(style='color:#576f95')
             .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 80%;')
@@ -33,7 +33,7 @@ block content
                 input.form-control(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 分项名称：
+                | 合同金额：
             .col-sm-6
                 input.form-control(type='text')
         .form-group
@@ -43,30 +43,135 @@ block content
                 input.form-control(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同名称：
+                | 厂家：
             .col-sm-6
                 input.form-control(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 起始时间：
+                | 部门：
             .col-sm-6
                 input.form-control(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 完成时间：
+                | 乙方联系人姓名：
             .col-sm-6
                 input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 乙方联系方式：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 甲方合同签订人：
+            .col-sm-6
+                input.form-control(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 签订日期：
+            .col-sm-6
+                input.form-control.input-datetime(type='text' placeholder='点击以选择日期')
         .form-group(align='center')
-            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
-                | 保存
+            h4(align='center')
+                | 添加付款方式
+            table.table(style='width:60%')
+                thead
+                    tr
+                        th
+                            | 阶段
+                        th
+                            | 百分比
+                        th
+                            | 待付款时间
+                        th
+                            | 单次付款金额
+                tbody
+                    tr
+                        td
+                            select.form-control.b1
+                                option
+                                    | 第一阶段
+                                option
+                                    | 第二阶段
+                                option
+                                    | 第三阶段
+                                option
+                                    | 第四阶段
+                        td
+                            select.form-control.b2
+                                option
+                                    | 10%
+                                option
+                                    | 20%
+                                option
+                                    | 30%
+                                option
+                                    | 40%
+                                option
+                                    | 50%
+                                option
+                                    | 60%
+                                option
+                                    | 70%
+                                option
+                                    | 80%
+                                option
+                                    | 90%
+                        td
+                            input.form-control.b3.input-datetime(placeholder='点击以选择')
+                        td
+                            input.form-control.b4
+            .form-group(align='center')
+                .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
+                    | 添加
+            h4(align='center')
+                | 已添加的付款方式
+        .form-group(align='center')
+            table.table.c1(style='width:60%' align='center')
+                thead
+                    tr
+                        th
+                            | 阶段
+                        th
+                            | 百分比
+                        th
+                            | 付款时间
+                        th
+                            | 单次付款金额
+                        th
+                            | 操作
+                tbody
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
-                | 上传文件
+                | 提交信息
         hr
+        .form-group(align='center')
+            button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
+                | 上传合同
     .form-group(align='center')
         button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
             | 下一步
         script(type='text/javascript').
-            $('#b1').click(function () {
-                window.location.href = "input6";
+            $(document).ready(function () {
+                $('#b1').click(function () {
+                    window.location.href = "input6";
+                })
+                $('.a1').click(function () {
+                    var b1 = $('.b1').val();
+                    var b2 = $('.b2').val();
+                    var b3 = $('.b3').val();
+                    var b4 = $('.b4').val();
+                    var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td>" + b3 + "</td>" +
+                        "<td>" + b4 + "</td><td><button class='btn" +
+                        " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
+                    if(b3 == '' || b4 == ''){
+                        alert('请填入完整的付款方式')
+                    }
+                    else {
+                        $(".c1").append(newRow);
+                    }
+                });
+                $(document).on('click', '#a4', function () {
+                    $(this).parents('tr').remove();
+                })
             })

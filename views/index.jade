@@ -6,7 +6,7 @@ html
         link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
         script(type='text/javascript' src='/javascripts/jquery-3.2.1.min.js')
         script(type='text/javascript' src='/javascripts/bootstrap-datetimepicker.min.js')
-        script(type='text/javascript' charset="UTF-8" src='/javascripts/bootstrap-datetimepicker.zh-CN.js' )
+        script(type='text/javascript'  src='/javascripts/bootstrap-datetimepicker.zh-CN.js' )
         link(rel="stylesheet" type="text/css" href="DataTables-1.10.15/media/css/jquery.dataTables.css")
         link(rel='stylesheet' type="text/css" href='/bootstrap-3.3.7-dist/css/bootstrap.min.css')
         script(src='/bootstrap-3.3.7-dist/js/bootstrap.min.js')
@@ -120,26 +120,7 @@ html
                         button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
     script(type='text/javascript').
-
-        $(".input1-datetime").datetimepicker({
-            language: 'zh-CN',
-            format: 'yyyy-mm-dd',
-            autoclose: 'true',
-            minView: 'month',
-            todayBtn: 'true',
-            todayHighlight: 'true',
-            pickerPosition: 'top-right'
-        });
-        $(".input6-1-datetime").datetimepicker({
-            language: 'zh-CN',
-            format: 'yyyy-mm-dd',
-            autoclose: 'true',
-            minView: 'month',
-            todayBtn: 'true',
-            todayHighlight: 'true',
-            pickerPosition: 'top-right'
-        });
-        $(".input6-2-datetime").datetimepicker({
+        $(".input-datetime").datetimepicker({
             language: 'zh-CN',
             format: 'yyyy-mm-dd',
             autoclose: 'true',
