@@ -70,7 +70,7 @@ block content
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 签订日期：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.input6-1-datetime(type='text' placeholder='点击以选择日期')
         .form-group(align='center')
             h4(align='center')
                 | 添加付款方式
@@ -82,7 +82,7 @@ block content
                         th
                             | 百分比
                         th
-                            | 付款时间
+                            | 待付款时间
                         th
                             | 单次付款金额
                 tbody
@@ -118,7 +118,7 @@ block content
                                 option
                                     | 90%
                         td
-                            input.form-control.b3
+                            input.form-control.b3.input6-2-datetime(placeholder='点击以选择')
                         td
                             input.form-control.b4
             .form-group(align='center')
