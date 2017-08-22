@@ -22,7 +22,7 @@ router.post('/userlogin',function (req,res) {
                 console.log(result);
                 connection.release();
             }
-            else {  //账号存在，可以登录，进行密码判断
+            else {
                 var $sql1 = "select * from user where username=?";
                 connection.query($sql1, [username], function (err, result) {
                     var temp = result[0].userpwd;

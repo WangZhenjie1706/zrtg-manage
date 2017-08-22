@@ -19,44 +19,49 @@ block content
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 项目名称：
             .col-sm-6
-                input.form-control(type='text')
-        .form-group
-            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 请示提交单位：
-            .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i11(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 请示标题：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i12(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 请示提交单位：
+            .col-sm-6
+                input.form-control.i13(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 请示预算：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i14(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 联系人姓名：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i15(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 联系人电话：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i16(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 项目申请日期：
+            .col-sm-6
+                input.form-control.input-datetime.i17(type='text' placeholder='点击来选择日期' readonly)
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 批文编号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i18(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 批文日期：
             .col-sm-6
-                input.form-control.input-datetime(type='text' placeholder='点击来选择日期' readonly )
+                input.form-control.input-datetime.i19(type='text' placeholder='点击来选择日期' readonly )
         .form-group(align='center')
-            .btn.btn-block(style='width:31%;background:#576f95;color:#ffffff')
+            .btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff')
                 | 保存数据
     form(enctype="multipart/form-data" action="/upload" method="post")
         .form-group(align='center')
@@ -66,13 +71,36 @@ block content
             style='width:32%;background:#576f95;color:#ffffff;margin-top:5px')
     hr
     .n(align='center')
-        .btn.btn-block#b1(style='width:32%;background:#576f95;color:#ffffff' )
+        .btn.btn-block#b3(style='width:32%;background:#576f95;color:#ffffff' )
             | 下一步
     script(type='text/javascript').
         $(document).ready(function () {
-            $('#b1').click(function () {
+            $('#b3').click(function () {
                 window.location.href = "input2";
             });
-            console.log(path);
+            $('#b1').click(function () {
+                if($('.i11').val() == ''){
+                    alert('项目名称不能为空')
+                }
+                else {
+                    $.ajax({
+                        url: 'input1/input1post',
+                        data: {
+                            project: $('.i11').val(),
+                            titlea: $('.i12').val(),
+                            dept: $('.i13').val(),
+                            budget: $('.i14').val(),
+                            contact: $('.i15').val(),
+                            phone: $('.i16').val(),
+                            sqdate: $('.i17').val(),
+                            pid: $('.i18').val(),
+                            pwdate: $('.i19').val()
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text'
+                    })
+                }
+            })
 
         })

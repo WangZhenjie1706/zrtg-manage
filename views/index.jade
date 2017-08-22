@@ -42,32 +42,32 @@ html
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
                                     | 权限：
                                 .col-sm-6
-                                    select.form-control
-                                        option
+                                    select.form-control#u1
+                                        option(value='1')
                                             | 管理员
-                                        option
+                                        option(value='2')
                                             | 用户1
-                                        option
+                                        option(value='3')
                                             | 用户2
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 账户：
+                                    | 账户名：
                                 .col-sm-6
-                                    input.form-control(type='text')
+                                    input.form-control#u2(type='text')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
                                     | 密码：
                                 .col-sm-6
-                                    input.form-control(type='text')
+                                    input.form-control#u3(type='password')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
                                     | 确认密码：
                                 .col-sm-6
-                                    input.form-control(type='text')
+                                    input.form-control#u4(type='password')
                     .modal-footer
                         button.btn.btn-default(data-dismiss="modal" type='button')
                             | 取消
-                        button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
+                        button.btn.btn-default.u1(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
         .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
         aria-hidden="true" class='modal fade' style='width:auto')
@@ -80,9 +80,14 @@ html
                         form.form-horizontal(role='form')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 存放地点：
+                                .col-sm-6
+                                    input.form-control.e1(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
                                     | 设备类型：
                                 .col-sm-6
-                                    select.form-control
+                                    select.form-control.e2
                                         option
                                             | U盘
                                         option
@@ -91,41 +96,161 @@ html
                                             | 硬件
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 存放地点：
-                                .col-sm-6
-                                    input.form-control(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 库存量：
-                                .col-sm-6
-                                    input.form-control(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 型号：
-                                .col-sm-6
-                                    input.form-control(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
                                     | 资产号：
                                 .col-sm-6
-                                    input.form-control(type='text')
+                                    input.form-control.e3(type='text')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 全网资产号：
+                                    | 设备数量：
                                 .col-sm-6
-                                    input.form-control(type='text')
+                                    input.form-control.e4(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借出日期：
+                                .col-sm-6
+                                    input.form-control.input-datetime-detail.e5(type='text' placeholder='点击来选择日期，精确到秒' readonly)
+
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借用人：
+                                .col-sm-6
+                                    input.form-control.e6(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借用去向：
+                                .col-sm-6
+                                    input.form-control.e7(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 备注：
+                                .col-sm-6
+                                    textarea.form-control.e8
+
                     .modal-footer
                         button.btn.btn-default(data-dismiss="modal" type='button')
                             | 取消
                         button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
+
+        .mode#modal3(tabindex='-1' role='dialog' aria-labelledby="label3"
+        aria-hidden="true" class='modal fade' style='width:auto')
+            .modal-dialog
+                .modal-content(style='border-radius:0')
+                    .modal-header(style='background:#576f95')
+                        h4.modal-title#label3(style='color:#ffffff')
+                            | 修改/删除用户信息
+                    .modal-body
+                        table.table
+                            thead
+                                tr
+                                    th
+                                        | 权限
+                                    th
+                                        | 账户名
+                                    th
+                                        | 密码
+                            tbody
+                                tr
+                                    td
+                                        select.form-control#change1
+                                            option(value='1')
+                                                | 管理员
+                                            option(value='2')
+                                                | 用户1
+                                            option(value='3')
+                                                | 用户2
+                                    td
+                                        input.form-control#change2(type='text')
+                                    td
+                                        input.form-control#change3(type='text')
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal" type='button')
+                            | 取消
+                        button.btn.btn-danger#user-delete(data-dismiss="modal" type='button')
+                            | 删除
+                        button.btn.btn-default#user-update(type='button' style='background:#576f95;color:#ffffff')
+                            | 保存
     script(type='text/javascript').
-        $(".input-datetime").datetimepicker({
-            language: 'zh-CN',
-            format: 'yyyy-mm-dd',
-            autoclose: 'true',
-            minView: 'month',
-            todayBtn: 'true',
-            todayHighlight: 'true',
-            pickerPosition: 'top-right'
-        });
+        $(document).ready(function () {
+            $(".input-datetime").datetimepicker({
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: 'true',
+                minView: 'month',
+                todayBtn: 'true',
+                todayHighlight: 'true',
+                pickerPosition: 'top-right'
+            });
+            $(".input-datetime-detail").datetimepicker({
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd hh:mm:ss',
+                autoclose: 'true',
+                minView: 'hour',
+                todayBtn: 'true',
+                todayHighlight: 'true',
+                pickerPosition: 'top-right'
+            });
+            $('.u1').click(function () {
+                var a2 = $('#u2');
+                var a3 = $('#u3');
+                var a4 = $('#u4');
+                if (a2.val() == '' || a3.val() == '' || a4.val() == '' || a4.val() !== a3.val()) {
+                    alert('请输入正确的账户名和密码！')
+                }
+                else {
+                    $.ajax({
+                        url: '/adduser',
+                        data: {
+                            lv: $('#u1').val(),
+                            username: $('#u2').val(),
+                            userpwd: $('#u3').val()
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text'
+                    });
+                    window.location.href = 'user';
+                }
+            });
+            $('#user-delete').click(function () {
+                if(confirm('确认要删除这个用户吗？')){
+                    $(this).parents('tr').remove();
+                    var id = $('.change').val();
+                    $.ajax({
+                        url: '/delete',
+                        data: {
+                            id1 : id
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text',
+                        success: function (data, textStatus) {
+                        }
+
+                    })
+                window.location.href = 'user';
+                }
+            });
+            $('#user-update').click(function () {
+                if (confirm('确认要修改用户信息吗？')) {
+                    var id = $('.change').val();
+                    $.ajax({
+                        url: '/update',
+                        data: {
+                            id2: id,
+                            lv: $('#change1').val(),
+                            username: $('#change2').val(),
+                            userpwd: $('#change3').val()
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text',
+                        success: function (data, textStatus) {
+                        }
+
+                    })
+                window.location.href = 'user';
+                }
+            });
+
+        })

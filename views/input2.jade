@@ -17,19 +17,14 @@ block content
     form.form-horizontal(role='form')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 项目名称：
-            .col-sm-6
-                input.form-control(type='text')
-        .form-group
-            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 党委会议编号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i21(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 打印日期：
+                | 党委会纪要打印日期：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i22.input-datetime(type='text' placeholder='点击来选择日期' readonly)
         .form-group(align='center')
             button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
                 | 保存
@@ -38,9 +33,16 @@ block content
                 | 上传文件
         hr
     .form-group(align='center')
-        button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+        button.btn.btn-block#b3(style='width:31%;background:#576f95;color:#ffffff' type='submit')
             | 下一步
         script(type='text/javascript').
-            $('#c1').click(function () {
-                window.location.href = "input3";
+            $(document).ready(function () {
+                $('#b3').click(function () {
+                    window.location.href = "input3";
+                });
+                $('#b1').click(function () {
+                    if($('.i21').val() == '' || $('.i22').val() == '')
+                    {alert('信息不完整')}
+                })
+
             })
