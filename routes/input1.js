@@ -6,7 +6,7 @@ var pool = mysql.createPool(config.mysql);
 router.get('/', function(req, res, next) {
     res.render('input1');
 });
-router.post('/input1post',function (req) {
+router.post('/input1post',function (req,res) {
     var project = req.body.project;
     var titlea = req.body.titlea;
     var dept = req.body.dept;
@@ -19,6 +19,18 @@ router.post('/input1post',function (req) {
     pool.getConnection(function (err,connection) {
         var $sql = 'INSERT INTO apply(aid, project, titlea, dept, budget, contact, phone, sqdate, pid, pwdate) VALUES(0, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         connection.query($sql,[project, titlea, dept, budget, contact, phone, sqdate, pid, pwdate],function (err,result) {
+            if(err)
+            {result = {
+                code: 300,
+                msg: '写入数据失败'};
+                console.log(err)
+            }
+            else
+            {result = {
+                code: 200,
+                msg: '写入数据成功'}
+            }
+            res.json(result);
         });
         connection.release();
     })

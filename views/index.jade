@@ -1,7 +1,9 @@
 doctype html
 html
     head
+        //网页标题继承
         block head
+        //公共脚本引用
         link(rel='stylesheet', href='/stylesheets/style.css')
         link(rel='stylesheet', href='/stylesheets/bootstrap-datetimepicker.min.css')
         script(type='text/javascript' src='/javascripts/jquery-3.2.1.min.js')
@@ -16,6 +18,7 @@ html
             h1(style='color:#ffffff')
                 | 设备信息管理系统
         .col-md-3(style='margin:0;padding:0')
+            //侧边栏
             .panel-default
                 .panel-heading(style='background:#576F95;border:1px')
                     h2(align='center' style='color:#ffffff')
@@ -29,6 +32,7 @@ html
                     block title1
                 .panel-body(style='background:#b3b4b7;')
                     block content
+        //新增用户弹出框
         .mode#modal1(tabindex='-1' role='dialog' aria-labelledby="label1"
         aria-hidden="true" class='modal fade' style='width:auto')
             .modal-dialog
@@ -67,71 +71,9 @@ html
                     .modal-footer
                         button.btn.btn-default(data-dismiss="modal" type='button')
                             | 取消
-                        button.btn.btn-default.u1(type='button' style='background:#576f95;color:#ffffff')
+                        button.btn.btn-default#user-add(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
-        .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
-        aria-hidden="true" class='modal fade' style='width:auto')
-            .modal-dialog
-                .modal-content(style='border-radius:0')
-                    .modal-header(style='background:#576f95')
-                        h4.modal-title#label2(style='color:#ffffff')
-                            | 新增一条设备信息
-                    .modal-body(style='border-radius:0')
-                        form.form-horizontal(role='form')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 存放地点：
-                                .col-sm-6
-                                    input.form-control.e1(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 设备类型：
-                                .col-sm-6
-                                    select.form-control.e2
-                                        option
-                                            | U盘
-                                        option
-                                            | 耗材
-                                        option
-                                            | 硬件
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 资产号：
-                                .col-sm-6
-                                    input.form-control.e3(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 设备数量：
-                                .col-sm-6
-                                    input.form-control.e4(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借出日期：
-                                .col-sm-6
-                                    input.form-control.input-datetime-detail.e5(type='text' placeholder='点击来选择日期，精确到秒' readonly)
-
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借用人：
-                                .col-sm-6
-                                    input.form-control.e6(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借用去向：
-                                .col-sm-6
-                                    input.form-control.e7(type='text')
-                            .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 备注：
-                                .col-sm-6
-                                    textarea.form-control.e8
-
-                    .modal-footer
-                        button.btn.btn-default(data-dismiss="modal" type='button')
-                            | 取消
-                        button.btn.btn-default.b2(type='button' style='background:#576f95;color:#ffffff')
-                            | 保存
-
+        //用户信息修改、删除弹出框
         .mode#modal3(tabindex='-1' role='dialog' aria-labelledby="label3"
         aria-hidden="true" class='modal fade' style='width:auto')
             .modal-dialog
@@ -170,8 +112,72 @@ html
                             | 删除
                         button.btn.btn-default#user-update(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
+        //设备借还信息弹出框
+        .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
+        aria-hidden="true" class='modal fade' style='width:auto')
+            .modal-dialog
+                .modal-content(style='border-radius:0')
+                    .modal-header(style='background:#576f95')
+                        h4.modal-title#label2(style='color:#ffffff')
+                            | 新增一条设备借出信息
+                    .modal-body(style='border-radius:0')
+                        form.form-horizontal(role='form')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 存放地点：
+                                .col-sm-6
+                                    input.form-control.e1(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 设备类型：
+                                .col-sm-6
+                                    select.form-control.e2
+                                        option(value='U盘')
+                                            | U盘
+                                        option(value='耗材')
+                                            | 耗材
+                                        option(value='硬件')
+                                            | 硬件
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 资产号：
+                                .col-sm-6
+                                    input.form-control.e3(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 设备数量：
+                                .col-sm-6
+                                    input.form-control.e4(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借出日期：
+                                .col-sm-6
+                                    input.form-control.input-datetime-detail.e5(type='text' placeholder='点击来选择日期，精确到秒' readonly)
+
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借用人：
+                                .col-sm-6
+                                    input.form-control.e6(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 借用去向：
+                                .col-sm-6
+                                    input.form-control.e7(type='text')
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 备注：
+                                .col-sm-6
+                                    textarea.form-control.e8
+
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal" type='button')
+                            | 取消
+                        button.btn.btn-default#equip-add(type='button' style='background:#576f95;color:#ffffff')
+                            | 提交
     script(type='text/javascript').
         $(document).ready(function () {
+            //日期插件(date)：yyyy-mm-dd
             $(".input-datetime").datetimepicker({
                 language: 'zh-CN',
                 format: 'yyyy-mm-dd',
@@ -181,6 +187,7 @@ html
                 todayHighlight: 'true',
                 pickerPosition: 'top-right'
             });
+            //日期插件(datetime):yyyy-mm-dd hh:mm:ss
             $(".input-datetime-detail").datetimepicker({
                 language: 'zh-CN',
                 format: 'yyyy-mm-dd hh:mm:ss',
@@ -190,7 +197,8 @@ html
                 todayHighlight: 'true',
                 pickerPosition: 'top-right'
             });
-            $('.u1').click(function () {
+            //新增用户功能
+            $('#user-add').click(function () {
                 var a2 = $('#u2');
                 var a3 = $('#u3');
                 var a4 = $('#u4');
@@ -207,11 +215,23 @@ html
                         },
                         type: 'POST',
                         timeout: 36000,
-                        dataType: 'text'
+                        dataType: 'text',
+                        success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            console.log(dataJson);
+                            if (dataJson.code == 200) {
+                                alert('添加用户成功!')
+                            }
+                            else {
+                                alert('添加用户失败，请重新填写信息！')
+                            }
+                        }
+
                     });
                     window.location.href = 'user';
                 }
             });
+            //用户删除功能
             $('#user-delete').click(function () {
                 if(confirm('确认要删除这个用户吗？')){
                     $(this).parents('tr').remove();
@@ -225,12 +245,21 @@ html
                         timeout: 36000,
                         dataType: 'text',
                         success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            console.log(dataJson);
+                            if (dataJson.code == 200) {
+                                alert('成功删除此用户!')
+                            }
+                            else {
+                                alert('用户删除失败，请重新进行操作！')
+                            }
                         }
 
                     })
                 window.location.href = 'user';
                 }
             });
+            //用户修改功能
             $('#user-update').click(function () {
                 if (confirm('确认要修改用户信息吗？')) {
                     var id = $('.change').val();
@@ -246,10 +275,48 @@ html
                         timeout: 36000,
                         dataType: 'text',
                         success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            console.log(dataJson);
+                            if (dataJson.code == 200) {
+                                alert('用户信息已修改!')
+                            }
+                            else {
+                                alert('用户信息修改失败，请重新填写信息！')
+                            }
                         }
 
                     })
                 window.location.href = 'user';
+                }
+            });
+            //增加设备借还记录信息
+            $('#equip-add').click(function () {
+                if (confirm('确认要新增这条信息吗？')) {
+                    $.ajax({
+                        url: '/addequip',
+                        data: {
+                            e1: $('.e1').val(),
+                            e2: $('.e2').val(),
+                            e3: $('.e3').val(),
+                            e4: $('.e4').val(),
+                            e5: $('.e5').val(),
+                            e6: $('.e6').val(),
+                            e7: $('.e7').val(),
+                            e8: $('.e8').val()
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text',
+                        success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            console.log(dataJson);
+                            if(dataJson.code == 200){
+                                alert('数据已成功写入到数据库!')
+                            }
+                            else{alert('数据写入失败，请重新填写信息！')}
+                        }
+                    })
+                    window.location.href = 'equip';
                 }
             });
 

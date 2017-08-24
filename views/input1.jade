@@ -83,23 +83,35 @@ block content
                     alert('项目名称不能为空')
                 }
                 else {
-                    $.ajax({
-                        url: 'input1/input1post',
-                        data: {
-                            project: $('.i11').val(),
-                            titlea: $('.i12').val(),
-                            dept: $('.i13').val(),
-                            budget: $('.i14').val(),
-                            contact: $('.i15').val(),
-                            phone: $('.i16').val(),
-                            sqdate: $('.i17').val(),
-                            pid: $('.i18').val(),
-                            pwdate: $('.i19').val()
-                        },
-                        type: 'POST',
-                        timeout: 36000,
-                        dataType: 'text'
-                    })
+                    if(confirm('确认提交项目基本信息？')){
+                        $.ajax({
+                            url: 'input1/input1post',
+                            data: {
+                                project: $('.i11').val(),
+                                titlea: $('.i12').val(),
+                                dept: $('.i13').val(),
+                                budget: $('.i14').val(),
+                                contact: $('.i15').val(),
+                                phone: $('.i16').val(),
+                                sqdate: $('.i17').val(),
+                                pid: $('.i18').val(),
+                                pwdate: $('.i19').val()
+                            },
+                            type: 'POST',
+                            timeout: 36000,
+                            dataType: 'text',
+                            success: function (data, textStatus) {
+                                var dataJson = eval("(" + data + ")");
+                                console.log(dataJson);
+                                if (dataJson.code == 200) {
+                                    alert('数据已成功写入到数据库!')
+                                }
+                                else {
+                                    alert('数据写入失败，请重新填写信息！')
+                                }
+                            }
+                        })
+                    }
                 }
             })
 
