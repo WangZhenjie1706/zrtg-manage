@@ -112,19 +112,28 @@ html
                             | 删除
                         button.btn.btn-default#user-update(type='button' style='background:#576f95;color:#ffffff')
                             | 保存
-        //设备借还信息弹出框
+        //新建设备入库/借出信息弹出框
         .mode#modal2(tabindex='-1' role='dialog' aria-labelledby="label2"
         aria-hidden="true" class='modal fade' style='width:auto')
             .modal-dialog
                 .modal-content(style='border-radius:0')
                     .modal-header(style='background:#576f95')
                         h4.modal-title#label2(style='color:#ffffff')
-                            | 新增一条设备借出信息
+                            | 新增一条设备信息
                     .modal-body(style='border-radius:0')
                         form.form-horizontal(role='form')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 存放地点：
+                                    | 操作：
+                                .col-sm-6
+                                    select.form-control.e9
+                                        option(value='借出' selected)
+                                            | 借出
+                                        option(value='入库')
+                                            | 入库
+                            .form-group
+                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                    | 操作地点：
                                 .col-sm-6
                                     input.form-control.e1(type='text')
                             .form-group
@@ -150,22 +159,22 @@ html
                                     input.form-control.e4(type='text')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借出日期：
+                                    | 日期：
                                 .col-sm-6
-                                    input.form-control.input-datetime-detail.e5(type='text' placeholder='点击来选择日期，精确到秒' readonly)
+                                    input.form-control.input-datetime-detail.e5(type='text' placeholder='点击来选择时间' readonly)
 
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借用人：
+                                    | 操作人：
                                 .col-sm-6
                                     input.form-control.e6(type='text')
                             .form-group
                                 label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
-                                    | 借用去向：
+                                    | 去向/用途：
                                 .col-sm-6
                                     input.form-control.e7(type='text')
                             .form-group
-                                label.col-sm-3.col-sm-offset-1.control-label(style='color:#576f95')
+                                label.col-sm-3.col-sm-offset-1.control-label.f1(style='color:#576f95')
                                     | 备注：
                                 .col-sm-6
                                     textarea.form-control.e8
@@ -177,6 +186,38 @@ html
                             | 提交
     script(type='text/javascript').
         $(document).ready(function () {
+            $('.e9').change(function () {
+                if($('.e9').val() == '入库')
+                {
+                    $('.f1').innerHTML = 'a';
+                }
+            })
+            //table插件
+            $('#tb').DataTable({
+                "oLanguage": {
+                    "oAria": {
+                        "sSortAscending": " - click/return to sort ascending",
+                        "sSortDescending": " - click/return to sort descending"
+                    },
+                    "sLengthMenu": "显示 _MENU_ 记录",
+                    "sZeroRecords": "对不起，查询不到任何相关数据",
+                    "sEmptyTable": "未有相关数据",
+                    "sLoadingRecords": "正在加载数据-请等待...",
+                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
+                    "sInfoEmpty": "当前显示0到0条，共0条记录",
+                    "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
+                    "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
+                    "sSearch": "模糊查询：",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": " 上一页 ",
+                        "sNext": " 下一页 ",
+                        "sLast": " 尾页 "
+                    }
+                }
+
+            });
             //日期插件(date)：yyyy-mm-dd
             $(".input-datetime").datetimepicker({
                 language: 'zh-CN',
@@ -302,7 +343,8 @@ html
                             e5: $('.e5').val(),
                             e6: $('.e6').val(),
                             e7: $('.e7').val(),
-                            e8: $('.e8').val()
+                            e8: $('.e8').val(),
+                            e9: $('.e9').val()
                         },
                         type: 'POST',
                         timeout: 36000,
@@ -315,8 +357,8 @@ html
                             }
                             else{alert('数据写入失败，请重新填写信息！')}
                         }
-                    })
-                    window.location.href = 'equip';
+                    });
+                    window.location.href = 'history';
                 }
             });
 

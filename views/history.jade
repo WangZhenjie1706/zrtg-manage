@@ -1,0 +1,87 @@
+extends index
+block head
+    title= '采购信息-基本项目信息'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备入库/借出历史信息查询
+block content
+    table#tb.table.table-stripe
+        thead
+            tr
+                th(style='display:none')
+                    | ID
+                th
+                    | 操作
+                th
+                    | 操作地点
+                th
+                    | 设备类型
+                th
+                    | 资产号
+                th
+                    | 设备数量
+                th
+                    | 借出日期
+                th
+                    | 借用人
+                th
+                    | 借用去向
+                th
+                    | 状态
+                th
+                    | 备注
+                th
+                    | 归还
+        tbody
+            each person in persons
+                tr(class='#{person.class}')
+                    td(style='display:none') #{person.id}
+                    td #{person.kind}
+                    td #{person.place}
+                    td #{person.type}
+                    td #{person.number}
+                    td #{person.amount}
+                    td #{person.date}
+                    td #{person.person}
+                    td #{person.to_equip}
+                    td.state #{person.state}
+                    td #{person.add_equip}
+                    td
+                        button.btn.btn-sm.giveback(style='background:#576f95;color:#ffffff')
+                            | 归还
+    script(type='text/javascript').
+        $(document).ready(function () {
+            if($('.state').val() == '已归还'){
+
+            }
+            $('.giveback').click(function () {
+                if(confirm('物品已归还？')){
+                    var id = $(this).parents('tr').children('td').html();
+                    $.ajax({
+                        url: '/history/giveback',
+                        data: {
+                            id : id
+                        },
+                        type: 'POST',
+                        timeout: 36000,
+                        dataType: 'text',
+                        success: function (data, textStatus) {
+                            var dataJson = eval("(" + data + ")");
+                            console.log(dataJson);
+                            if (dataJson.code == 200) {
+                                alert('物品状态已修改为已归还!')
+                            }
+                            else {
+                                alert('物品状态修改失败！')
+                            }
+                        }
+                    });
+                    window.location.href = 'history';
+
+
+                }
+            })
+
+        })

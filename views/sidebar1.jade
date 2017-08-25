@@ -9,13 +9,15 @@ hr
 h3(align='center' style='color:#576f95')
     | 设备管理系统
 button.btn.btn-default.btn-block(data-toggle='modal' data-target='#modal2' style='background:#576f95;color:#ffffff')
-    | 新增设备信息
+    | 新增设备入库/借出信息
+button.btn.btn-default.btn-block#a6(style='background:#576f95;color:#ffffff')
+    | 设备入库/借出历史信息查询
 button.btn.btn-default.btn-block#a3(style='background:#576f95;color:#ffffff')
-    | 查询设备信息
+    | 查询设备库存信息
 hr
 h3(align='center' style='color:#576f95')
     | 系统操作
-button.btn.btn-default.btn-block#a7(data-toggle='modal' data-target='#modal1' style='background:#576f95;color:#ffffff')
+button.btn.btn-default.btn-block(data-toggle='modal' data-target='#modal1' style='background:#576f95;color:#ffffff')
     | 添加用户
 button.btn.btn-default.btn-block#a4(style='background:#576f95;color:#ffffff')
     | 管理用户
@@ -37,5 +39,7 @@ script(type='text/javascript').
     });
     $('#a5').click(function () {
         window.location.href = 'login'
+    });$('#a6').click(function () {
+        window.location.href = 'history'
     });
 

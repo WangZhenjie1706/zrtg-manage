@@ -10,7 +10,7 @@ block content
     table#tb.table-stripe.table
         thead
             tr
-                th
+                th(style='display:none')
                     | ID
                 th
                     | 权限
@@ -23,7 +23,7 @@ block content
         tbody
             each person in persons
                 tr(class='#{person.class}')
-                    td #{person.id}
+                    td(style='display:none') #{person.id}
                     td #{person.lv}
                     td #{person.username}
                     td #{person.userpwd}
@@ -35,31 +35,6 @@ block content
 
         script(type='text/javascript').
             $(document).ready(function () {
-                $('#tb').DataTable({
-                    "oLanguage": {
-                        "oAria": {
-                            "sSortAscending": " - click/return to sort ascending",
-                            "sSortDescending": " - click/return to sort descending"
-                        },
-                        "sLengthMenu": "显示 _MENU_ 记录",
-                        "sZeroRecords": "对不起，查询不到任何相关数据",
-                        "sEmptyTable": "未有相关数据",
-                        "sLoadingRecords": "正在加载数据-请等待...",
-                        "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录。",
-                        "sInfoEmpty": "当前显示0到0条，共0条记录",
-                        "sInfoFiltered": "（数据库中共为 _MAX_ 条记录）",
-                        "sProcessing": "<img src='../resources/user_share/row_details/select2-spinner.gif'/> 正在加载数据...",
-                        "sSearch": "模糊查询：",
-                        "sUrl": "",
-                        "oPaginate": {
-                            "sFirst": "首页",
-                            "sPrevious": " 上一页 ",
-                            "sNext": " 下一页 ",
-                            "sLast": " 尾页 "
-                        }
-                    }
-
-                });
                 $('.change').click(function () {
                     var id = $(this).parents('tr').children('td').html();
                     var lv = $(this).parents('tr').children('td').next().html();

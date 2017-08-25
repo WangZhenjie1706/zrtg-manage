@@ -30,6 +30,7 @@ var detail = require('./routes/detail');
 var detail2 = require('./routes/detail2');
 var equip = require('./routes/equip');
 var user = require('./routes/user');
+var history = require('./routes/history');
 
 
 var app = express();
@@ -63,6 +64,7 @@ app.use('/detail',detail);
 app.use('/detail2',detail2);
 app.use('/equip',equip);
 app.use('/user',user);
+app.use('/history',history);
 
 
 

@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var config = require('../config');
 var pool = mysql.createPool(config.mysql);
 router.get('/', function(req, res, next) {
-  res.render('index');
+    res.render('index');
 });
 router.post('/adduser',function (req,res,next) {
     var lv = req.body.lv;
@@ -85,9 +85,10 @@ router.post('/addequip',function (req,res,next) {
     var e6 = req.body.e6;
     var e7 = req.body.e7;
     var e8 = req.body.e8;
+    var e9 = req.body.e9;
     pool.getConnection(function (err,connection) {
-        var $sql = 'INSERT INTO manage(id, place, type, number, amount, date, person, to_equip, add_equip) VALUES(0, ?, ?, ?, ?, ?, ?, ?, ?)';
-        connection.query($sql,[e1, e2, e3, e4, e5, e6, e7, e8],function (err,result) {
+        var $sql = 'INSERT INTO manage(id, kind, place, type, number, amount, date, person, to_equip, add_equip) VALUES(0,?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        connection.query($sql,[e9, e1, e2, e3, e4, e5, e6, e7, e8],function (err,result) {
             if(err)
                 {result = {
                         code: 300,
