@@ -43,6 +43,31 @@ block content
                 $('#b1').click(function () {
                     if($('.i21').val() == '' || $('.i22').val() == '')
                     {alert('信息不完整')}
+                    else{
+                        if(confirm('确认将信息保存到数据库？')){
+                            $.ajax({
+                                url: '/input2/input2post',
+                                data: {
+                                    did: $('.i21').val(),
+                                    aid: #{input1[0].aid},
+                                    dwh_date: $('.i22').val()
+                                },
+                                type: 'POST',
+                                timeout: 36000,
+                                dataType: 'text',
+                                success: function (data, textStatus) {
+                                    var dataJson = eval("(" + data + ")");
+                                    console.log(dataJson);
+                                    if (dataJson.code == 200) {
+                                        alert('数据已成功写入到数据库!')
+                                    }
+                                    else {
+                                        alert('数据写入失败，请重新填写信息！')
+                                    }
+                                }
+                            })
+                        }
+                    }
                 })
 
             })

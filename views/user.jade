@@ -35,6 +35,8 @@ block content
 
         script(type='text/javascript').
             $(document).ready(function () {
+                console.log(#{strings});
+                console.log(string);
                 $('.change').click(function () {
                     var id = $(this).parents('tr').children('td').html();
                     var lv = $(this).parents('tr').children('td').next().html();
