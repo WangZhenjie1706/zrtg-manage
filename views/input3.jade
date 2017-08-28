@@ -46,51 +46,78 @@ block content
                             input.form-control.b1
                         td
                             input.form-control.b2
-            .form-group(align='center')
-                .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
-                    | 添加
+        .for(align='center')
+            .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
+                | 添加
             h4(align='center')
                 | 已添加的标段
         .form-group(align='center')
-            table.table.c1(style='width:60%' align='center')
+            table.table.tb.c1.table-stripe(style='width:60%' align='center')
                 thead
                     tr
                         th
-                            | 标段名称
+                            | biaoduan
                         th
-                            | 标段金额
+                            | amount
                         th
                             | 操作
                 tbody
         .form-group(align='center')
-            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff')
                 | 保存
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
                 | 上传预审单
         hr
     .form-group(align='center')
-        button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+        button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff')
             | 下一步
         script(type='text/javascript').
             $(document).ready(function () {
-                $('#b1').click(function () {
-                    window.location.href = "input4";
-                });
                 $('.a1').click(function () {
                     var b1 = $('.b1').val();
                     var b2 = $('.b2').val();
                     var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td><button class='btn" +
                         " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
-                    if (b1 !=='' && b2 !== ''){
+                    if (b1 !== '' && b2 !== '') {
                         $(".c1").append(newRow);
                     }
-                    else
-                    {
+                    else {
                         alert('要添加的标段名称与金额均不可为空！')
                     }
                 });
                 $(document).on('click', '#a4', function () {
                     $(this).parents('tr').remove();
-                })
+                });
+                $('#b1').click(function () {
+                    window.location.href = "input4";
+                });
+                $('#c1').click(function () {
+                    var table = $('.tb').tableToJSON({ignoreColumns: [2]});
+                    // Convert the table into a javascript object
+                    var table1 = JSON.stringify(table)
+                    alert(table1);
+                    if(confirm('确认提交信息？')){
+                        $.ajax({
+                            url: '/input3/input3post1',
+                            data: {
+                                tab: table1
+                            },
+                            type: 'POST',
+                            timeout: 36000,
+                            dataType: 'text',
+                            success: function (data, textStatus) {
+                                var dataJson = eval("(" + data + ")");
+                                console.log(dataJson);
+                                if (dataJson.code == 200) {
+                                    alert('数据已成功写入到数据库!')
+                                }
+                                else {
+                                    alert('数据写入失败，请重新填写信息！')
+                                }
+                            }
+                        })
+                    }
+                });
+
             })

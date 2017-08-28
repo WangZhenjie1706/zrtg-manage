@@ -30,13 +30,8 @@ block content
                     td
                         button.btn.btn-sm.change(style='background:#576f95;color:#ffffff' data-toggle='modal' data-target='#modal3')
                             | 修改/删除
-
-
-
         script(type='text/javascript').
             $(document).ready(function () {
-                console.log(#{strings});
-                console.log(string);
                 $('.change').click(function () {
                     var id = $(this).parents('tr').children('td').html();
                     var lv = $(this).parents('tr').children('td').next().html();
@@ -46,7 +41,6 @@ block content
                     $('#change2').val(username);
                     $('#change3').val(userpwd);
                     $('.change').val(id);
+                });
 
-
-                })
             })
