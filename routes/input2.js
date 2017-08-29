@@ -25,13 +25,13 @@ router.post('/input2post',function (req,res) {
             if(err)
             {result = {
                 code: 300,
-                msg: '党委会相关信息提交成功'};
+                msg: '信息提交失败'};
                 console.log(err)
             }
             else
             {result = {
                 code: 200,
-                msg: '党委会信息提交失败，请重新输入'}
+                msg: '信息提交成功'}
             }
             res.json(result);
         });

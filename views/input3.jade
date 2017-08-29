@@ -19,17 +19,18 @@ block content
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 项目名称：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control(type='text' placeholder='#{title[0].project}' readonly)
+
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 项目预算：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i31(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 提交日期：
             .col-sm-6
-                input.form-control.input-datetime(type='text' placeholder='点击来选择日期' readonly)
+                input.form-control.input-datetime.i32(type='text' placeholder='点击来选择日期' readonly)
         .form-group(align='center')
             h4(align='center')
                 | 添加标段
@@ -43,9 +44,9 @@ block content
                 tbody
                     tr
                         td
-                            input.form-control.b1
+                            input.form-control.i33
                         td
-                            input.form-control.b2
+                            input.form-control.i34
         .for(align='center')
             .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
                 | 添加
@@ -56,12 +57,20 @@ block content
                 thead
                     tr
                         th
-                            | biaoduan
+                            | 标段
                         th
-                            | amount
+                            | 金额
                         th
                             | 操作
                 tbody
+                    each project in projects
+                        tr(class='#{project.class}')
+                            td(style='display:none') #{project.bid}
+                            td #{project.bname}
+                            td #{project.bmoney}
+                            td
+                                button.btn.btn-sm.change(style='background:#576f95;color:#ffffff')
+                                    | 修改/删除
         .form-group(align='center')
             button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff')
                 | 保存
@@ -74,34 +83,19 @@ block content
             | 下一步
         script(type='text/javascript').
             $(document).ready(function () {
-                $('.a1').click(function () {
-                    var b1 = $('.b1').val();
-                    var b2 = $('.b2').val();
-                    var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td><button class='btn" +
-                        " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
-                    if (b1 !== '' && b2 !== '') {
-                        $(".c1").append(newRow);
-                    }
-                    else {
-                        alert('要添加的标段名称与金额均不可为空！')
-                    }
-                });
-                $(document).on('click', '#a4', function () {
-                    $(this).parents('tr').remove();
-                });
                 $('#b1').click(function () {
                     window.location.href = "input4";
                 });
-                $('#c1').click(function () {
-                    var table = $('.tb').tableToJSON({ignoreColumns: [2]});
-                    // Convert the table into a javascript object
-                    var table1 = JSON.stringify(table)
-                    alert(table1);
-                    if(confirm('确认提交信息？')){
+                $('.a1').click(function () {
+                    if($('.i31').val() !== '' && $('.i32').val() !== '' && $('.i33').val() !== '' && $('.i34').val() !== ''){
                         $.ajax({
                             url: '/input3/input3post1',
                             data: {
-                                tab: table1
+                                aid: #{title[0].aid},
+                                money: $('.i31').val(),
+                                ysd_date: $('.i32').val(),
+                                bname: $('.i33').val(),
+                                bmoney: $('.i34').val()
                             },
                             type: 'POST',
                             timeout: 36000,
@@ -118,6 +112,7 @@ block content
                             }
                         })
                     }
+                    else {alert('请输入完整的项目以及标段信息！')}
                 });
 
             })
