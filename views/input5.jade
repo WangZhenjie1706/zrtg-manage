@@ -19,59 +19,58 @@ block content
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 标段：
             .col-sm-6
-                select.form-control
-                    option
-                        | 标段1
-                    option
-                        | 标段2
-                    option
-                        | 标段3
-        .form-group
-            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同名称：
-            .col-sm-6
-                input.form-control(type='text')
-        .form-group
-            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同金额：
-            .col-sm-6
-                input.form-control(type='text')
+                select.form-control.i51
+                    each project in projects
+                        option(value = '#{project.bid}')
+                            | #{project.bname}
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 合同编号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i52(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 合同名称：
+            .col-sm-6
+                input.form-control.i53(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 合同金额：
+            .col-sm-6
+                input.form-control.i54(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 厂家：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i55(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 部门：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i56(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 乙方联系人姓名：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i57(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 乙方联系方式：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i58(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 甲方合同签订人：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i59(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 签订日期：
             .col-sm-6
-                input.form-control.input-datetime(type='text' placeholder='点击以选择日期')
+                input.form-control.input-datetime.i510(type='text' placeholder='点击以选择日期')
         .form-group(align='center')
+            button.btn.btn-block.post1(style='width:30%;background:#576f95;color:#ffffff')
+                | 提交信息
             h4(align='center')
                 | 添加付款方式
             table.table(style='width:60%')
@@ -88,7 +87,7 @@ block content
                 tbody
                     tr
                         td
-                            select.form-control.b1
+                            select.form-control.i511
                                 option
                                     | 第一阶段
                                 option
@@ -98,7 +97,7 @@ block content
                                 option
                                     | 第四阶段
                         td
-                            select.form-control.b2
+                            select.form-controli512
                                 option
                                     | 10%
                                 option
@@ -118,9 +117,9 @@ block content
                                 option
                                     | 90%
                         td
-                            input.form-control.b3.input-datetime(placeholder='点击以选择')
+                            input.form-control.b3.input-datetime.i513(placeholder='点击以选择')
                         td
-                            input.form-control.b4
+                            input.form-control.i514
             .form-group(align='center')
                 .btn.a1(style='width:31%;background:#576f95;color:#ffffff')
                     | 添加
@@ -138,13 +137,9 @@ block content
                             | 付款时间
                         th
                             | 单次付款金额
-                        th
-                            | 操作
                 tbody
-        .form-group(align='center')
-            button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
-                | 提交信息
-        hr
+
+            hr
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
                 | 上传合同
@@ -157,21 +152,60 @@ block content
                     window.location.href = "input6";
                 })
                 $('.a1').click(function () {
-                    var b1 = $('.b1').val();
-                    var b2 = $('.b2').val();
-                    var b3 = $('.b3').val();
-                    var b4 = $('.b4').val();
-                    var newRow = "<tr><td>" + b1 + "</td><td>" + b2 + "</td><td>" + b3 + "</td>" +
-                        "<td>" + b4 + "</td><td><button class='btn" +
-                        " btn-danger btn-xs' id='a4' onclick='del(this)'>删除</button></td></tr>";
-                    if(b3 == '' || b4 == ''){
-                        alert('请填入完整的付款方式')
+                    if($('.i513').val() == '' || $('.i514').val() == ''){
+                        alert('请输入完成的付款信息！')}
+                    else{
+                        if(confirm('确认付款信息？')){
+                            $.ajax({
+                                url: '/input5/post2',
+                                data: {
+                                    bid: $('.i511').val(),
+                                    step: $('.i512').val(),
+                                    persent: $('.i513').val(),
+                                    pdate: $('.i514').val(),
+                                    pamount: $('.i515')
+
+                                }
+                            })
+                        }
                     }
+                })
+                $('.post1').click(function () {
+                    if($('.i52').val() == '' || $('.i52').val() == '' || $('.i53').val() == '' ||
+                    $('.i54').val() == '' ||$('.i55').val() == '' || $('.i56').val() == '' ||
+                    $('.i57').val() == '' ||$('.i58').val() == '' || $('.i59').val() == '' || $('.i510').val() == '')
+                    {alert('请输入完整的信息！')}
                     else {
-                        $(".c1").append(newRow);
+                        if(confirm('确认提交信息？')){
+                            $.ajax({
+                                url: '/input5/input5post1',
+                                data: {
+                                    bid: $('.i51').val(),
+                                    hser: $('.i52').val(),
+                                    hname: $('.i53').val(),
+                                    hmoney: $('.i54').val(),
+                                    changjia: $('.i55').val(),
+                                    dept: $('.i56').val(),
+                                    yperson: $('.i57').val(),
+                                    yphone: $('.i58').val(),
+                                    jperson: $('.i59').val(),
+                                    ht_date: $('.i510').val()
+                                },
+                                type: 'POST',
+                                timeout: 36000,
+                                dataType: 'text',
+                                success: function (data, textStatus) {
+                                    var dataJson = eval("(" + data + ")");
+                                    console.log(dataJson);
+                                    if (dataJson.code == 200) {
+                                        alert('数据已成功写入到数据库!')
+                                    }
+                                    else {
+                                        alert('数据写入失败，请重新填写信息！')
+                                    }
+                                }
+                            })
+                        }
                     }
-                });
-                $(document).on('click', '#a4', function () {
-                    $(this).parents('tr').remove();
                 })
             })

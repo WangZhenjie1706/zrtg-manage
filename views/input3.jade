@@ -65,12 +65,12 @@ block content
                 tbody
                     each project in projects
                         tr(class='#{project.class}')
-                            td(style='display:none') #{project.bid}
+                            td.delete_id(style='display:none') #{project.bid}
                             td #{project.bname}
                             td #{project.bmoney}
                             td
-                                button.btn.btn-sm.change(style='background:#576f95;color:#ffffff')
-                                    | 修改/删除
+                                button.btn.btn-sm.delete.btn-danger
+                                    | 删除此标段
         .form-group(align='center')
             button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff')
                 | 保存
@@ -113,6 +113,34 @@ block content
                         })
                     }
                     else {alert('请输入完整的项目以及标段信息！')}
+                window.location.href = 'input3';
+                });
+                $('.delete').click(function () {
+                    var id1 = $(this).parents('tr').children('td').html();
+                    if (confirm('确认要删除这个标段吗？')) {
+                        $(this).parents('tr').remove();
+                        $.ajax({
+                            url: '/input3/delete',
+                            data: {
+                                id1: id1
+                            },
+                            type: 'POST',
+                            timeout: 36000,
+                            dataType: 'text',
+                            success: function (data, textStatus) {
+                                var dataJson = eval("(" + data + ")");
+                                console.log(dataJson);
+                                if (dataJson.code == 200) {
+                                    alert('成功删除此标段!')
+                                }
+                                else {
+                                    alert('标段删除失败！')
+                                }
+                            }
+
+                        })
+                        window.location.href = 'input3';
+                    }
                 });
 
             })

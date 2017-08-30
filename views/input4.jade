@@ -15,40 +15,32 @@ block content
     br
     hr
     form.form-horizontal(role='form')
-        .form-group
-            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 项目名称：
-            .col-sm-6
-                input.form-control(type='text')
         .form-group(align='center')
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 标段：
             .col-sm-6
-                select.form-control
-                    option
-                        | 标段1
-                    option
-                        | 标段2
-                    option
-                        | 标段3
+                select.form-control.i41
+                    each project in projects
+                        option(value = '#{project.bid}')
+                            | #{project.bname}
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 会议编号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i42(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 中标单位：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i43(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 中标日期：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.input-datetime.i44(type='text' placeholder='点击来选择日期' readonly)
         .form-group(align='center')
-            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
-                | 保存
+            button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff')
+                | 保存数据
         .form-group(align='center')
             button.btn.btn-block(style='width:30%;background:#576f95;color:#ffffff')
                 | 上传文件
@@ -57,6 +49,44 @@ block content
         button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
             | 下一步
         script(type='text/javascript').
-            $('#b1').click(function () {
-                window.location.href = "input5";
+            $(document).ready(function () {
+                $('#b1').click(function () {
+                    window.location.href = "input5";
+                });
+                $('#c1').click(function () {
+                    var bid = $('.i41').val();
+                    var gid = $('.i42').val();
+                    var company = $('.i43').val();
+                    if(gid == '' || company == '' || $('.i44').val() =='')
+                    {
+                        alert('信息输入不完整！')
+                    }
+                    else{
+                        if(confirm('确定将数据保存到数据库？')){
+                            $.ajax({
+                                url: '/input4/input4post',
+                                data: {
+                                    bid: bid,
+                                    gid: gid,
+                                    company: company,
+                                    gwh_date: $('.i44').val()
+                                },
+                                type: 'POST',
+                                timeout: 36000,
+                                dataType: 'text',
+                                success: function (data, textStatus) {
+                                    var dataJson = eval("(" + data + ")");
+                                    console.log(dataJson);
+                                    if (dataJson.code == 200) {
+                                        alert('数据已成功写入到数据库!')
+                                    }
+                                    else {
+                                        alert('数据写入失败，请重新填写信息！')
+                                    }
+                                }
+                            })
+                        }
+                    }
+
+                })
             })
