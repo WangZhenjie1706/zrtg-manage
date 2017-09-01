@@ -16,25 +16,21 @@ router.get('/', function(req, res) {
                     {console.log(err)}
                     string1 = JSON.stringify(result);
                     projects = JSON.parse(string1);
-                    res.render('input6', {title:title,projects:projects});
+                    res.render('input5_1', {title:title,projects:projects});
                 })
             }
         });
     })
 });
-router.post('/post',function (req,res) {
-    var i1 = req.body.i1;
-    var i2 = req.body.i2;
-    var i3 = req.body.i3;
-    var i4 = req.body.i4;
-    var i5 = req.body.i5;
-    var i6 = req.body.i6;
-    var i7 = req.body.i7;
-    var i8 = req.body.i8;
-    var i9 = req.body.i9;
+router.post('/post1',function (req,res) {
+    var bid = req.body.bid;
+    var step = req.body.step;
+    var percent = req.body.percent;
+    var pdate = req.body.pdate;
+    var pamount = req.body.pamount;
     pool.getConnection(function (err,connection) {
-        var sql = 'insert into zichandan (bid, asset_name, asset_type, asset_amount, asset_txm, asset_xlh, sccj, price, remark) values (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        connection.query(sql,[i1, i2, i3, i4, i5, i6, i7, i8, i9],function (err,result,next) {
+        var sql = 'insert into jindu (bid, step, percent, pdate, pamount) values (?, ?, ?, ?, ?)';
+        connection.query(sql,[bid, step, percent, pdate, pamount],function (err,result,next) {
             if(err){
                 console.log(err)
             }
@@ -46,6 +42,6 @@ router.post('/post',function (req,res) {
             res.json(result);
         });
         connection.release();
-    })
+        })
 });
 module.exports = router;

@@ -1,0 +1,121 @@
+extends index
+block head
+    title= '添加付款方式'
+block sidebar
+    include sidebar1
+block title1
+    h2(align='center' style='color:#ffffff')
+        | 设备采购信息导入
+block content
+    h3(align='center')
+        | 步骤6-添加付款方式
+    .col-md-6.col-md-offset-3(style='width:60%')
+        .progress.progress-striped.active(style='color:#576f95')
+            .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 80%;')
+    br
+    hr
+    form.form-horizontal
+
+        .form-group(align='center')
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 标段：
+            .col-sm-6
+                select.form-control.i510
+                    each project in projects
+                        option(value = '#{project.bid}')
+                            | #{project.bname}
+        h4(align='center')
+            | 添加付款方式
+        .form-group(align='center')
+            table.table(style='width:60%' align='center')
+                thead
+                    tr
+                        th
+                            | 阶段
+                        th
+                            | 百分比
+                        th
+                            | 待付款时间
+                        th
+                            | 单次付款金额
+                tbody
+                    tr
+                        td
+                            select.form-control.i511
+                                option
+                                    | 第一阶段
+                                option
+                                    | 第二阶段
+                                option
+                                    | 第三阶段
+                                option
+                                    | 第四阶段
+                        td
+                            select.form-control.i512
+                                option
+                                    | 10%
+                                option
+                                    | 20%
+                                option
+                                    | 30%
+                                option
+                                    | 40%
+                                option
+                                    | 50%
+                                option
+                                    | 60%
+                                option
+                                    | 70%
+                                option
+                                    | 80%
+                                option
+                                    | 90%
+                        td
+                            input.form-control.b3.input-datetime.i513(placeholder='点击以选择')
+                        td
+                            input.form-control.i514
+            .form-group(align='center')
+                button.btn#post(style='width:31%;background:#576f95;color:#ffffff')
+                    | 添加
+    .form-group(align='center')
+        button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
+            | 下一步
+    script(type='text/javascript').
+        $(document).ready(function () {
+            $('#b1').click(function () {
+                window.location.href = "input6";
+            });
+            $('#post').click(function () {
+                if($('.i513').val() == '' || $('.i514').val() == ''){
+                    alert('信息输入不完整！')
+                }
+                else {
+                    if(confirm('确认提交？')){
+                        $.ajax({
+                            url: '/input5_1/post1',
+                            data: {
+                                bid: $('.i510').val(),
+                                step: $('.i511').val(),
+                                percent: $('.i512').val(),
+                                pdate: $('.i513').val(),
+                                pamount: $('.i514').val()
+                            },
+                            type: 'POST',
+                            timeout: 36000,
+                            dataType: 'text',
+                            success: function (data, textStatus) {
+                                var dataJson = eval("(" + data + ")");
+                                console.log(dataJson);
+                                if (dataJson.code == 200) {
+                                    alert('数据已成功写入到数据库!')
+                                }
+                                else {
+                                    alert('数据写入失败，请重新填写信息！')
+                                }
+                            }
+                        })
+                    }
+                }
+            })
+
+        })

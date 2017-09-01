@@ -8,7 +8,7 @@ block title1
         | 设备采购信息导入
 block content
     h3(align='center')
-        | 步骤6-导入资产领用单
+        | 步骤7-导入资产领用单
     .col-md-6.col-md-offset-3(style='width:60%')
         .progress.progress-striped.active(style='color:#576f95')
             .progress-bar(role='progressbar',  aria-valuemin='0', aria-valuemax='100', style='width: 100%;')
@@ -19,43 +19,50 @@ block content
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
                 | 标段：
             .col-sm-6
-                select.form-control
-                    option
-                        | 标段1
-                    option
-                        | 标段2
-                    option
-                        | 标段3
+                select.form-control.i1
+                    each project in projects
+                        option(value = '#{project.bid}')
+                            | #{project.bname}
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同名称：
+                | 资产名称：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i2(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 分项名称：
+                | 规格型号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i3(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同编号：
+                | 数量：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i4(type='number')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 合同名称：
+                | 资产条形码：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i5(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 起始时间：
+                | 资产序列号：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i6(type='text')
         .form-group
             label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
-                | 完成时间：
+                | 生产厂家：
             .col-sm-6
-                input.form-control(type='text')
+                input.form-control.i7(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 单价：
+            .col-sm-6
+                input.form-control.i8(type='text')
+        .form-group
+            label.col-sm-2.col-sm-offset-2.control-label(style='color:#576f95')
+                | 备注：
+            .col-sm-6
+                textarea.form-control.i9
         .form-group(align='center')
             button.btn.btn-block#c1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
                 | 保存
@@ -67,6 +74,36 @@ block content
         button.btn.btn-block#b1(style='width:31%;background:#576f95;color:#ffffff' type='submit')
             | 完成
         script(type='text/javascript').
-            $('#b1').click(function () {
-                window.location.href = "detail";
+            $(document).ready(function () {
+                $('#c1').click(function () {
+                    if (confirm('确认提交?')) {
+                        $.ajax({
+                            url: '/input6/post',
+                            data: {
+                                i1: $('.i1').val(),
+                                i2: $('.i2').val(),
+                                i3: $('.i3').val(),
+                                i4: $('.i4').val(),
+                                i5: $('.i5').val(),
+                                i6: $('.i6').val(),
+                                i7: $('.i7').val(),
+                                i8: $('.i8').val(),
+                                i9: $('.i9').val()
+                            },
+                            type: 'POST',
+                            timeout: 36000,
+                            dataType: 'text',
+                            success: function (data, textStatus) {
+                                var dataJson = eval("(" + data + ")");
+                                console.log(dataJson);
+                                if (dataJson.code == 200) {
+                                    alert('数据已成功写入到数据库!')
+                                }
+                                else {
+                                    alert('数据写入失败，请重新填写信息！')
+                                }
+                            }
+                        })
+                    }
+                })
             })

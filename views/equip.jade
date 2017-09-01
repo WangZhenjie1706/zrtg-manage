@@ -12,61 +12,34 @@ block content
         thead
             tr
                 th
-                    | 存放地点
+                    | 资产名称
                 th
-                    | 设备类型
-                th
-                    | 资产号
+                    | 规格型号
                 th
                     | 数量
                 th
-                    | 设备名称
+                    | 资产条形码
+                th
+                    | 资产序列号
+                th
+                    | 生产厂家
+                th
+                    | 单价
                 th
                     | 备注
         tbody
-                tr
+            each equip in equips
+                tr(class='#{equip.class}')
+                    td(style='display:none') #{equip.id}
+                    td #{equip.asset_name}
+                    td #{equip.asset_type}
+                    td #{equip.asset_amount}
+                    td #{equip.asset_txm}
+                    td #{equip.sccj}
+                    td #{equip.price}
+                    td #{equip.remark}
                     td
-                        | 办公室
-                    td
-                        | U盘
-                    td
-                        | 1231241
-                    td
-                        | 20
-                    td
-                        | a
-                    td
-                        button.btn.btn-sm(style='background:#576f95;color:#ffffff')
-                            | 备注
-                tr
-                    td
-                        | 机房
-                    td
-                        | 耗材
-                    td
-                        | 1231241
-                    td
-                        | 200
-                    td
-                        | b
-                    td
-                        button.btn.btn-sm(style='background:#576f95;color:#ffffff')
-                            | 备注
-                tr
-                    td
-                        | 办公室
-                    td
-                        | 硬件
-                    td
-                        | 1231241
-                    td
-                        | 87
-                    td
-                        | c
-                    td
-                        button.btn.btn-sm(style='background:#576f95;color:#ffffff')
-                            | 备注
+                        button.btn.btn-sm.change(style='background:#576f95;color:#ffffff' data-toggle='modal' data-target='#modal3')
+                            | 修改/删除
+
         script(type='text/javascript').
-            $('.z2').click(function () {
-                window.location.href='equip-detail'
-            })

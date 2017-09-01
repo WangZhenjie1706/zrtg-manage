@@ -56,4 +56,34 @@ router.post('/input5post1',function (req,res) {
     })
 
 });
+router.post('/input5post2',function (req,res) {
+    var i511 = req.body.bid;
+    var i512 = req.body.step;
+    var i513 = req.body.percent;
+    var i514 = req.body.pdate;
+    var i515 = req.body.pamount;
+
+    pool.getConnection(function (err,connection) {
+        if(err){
+            console.log(err)
+        }
+        var sql = 'insert into jindu (bid, step, percent, pdate, pamount) values (?, ?, ?, ?, ?)';
+        connection.query(sql,[i511, i512, i513, i514, i515],function (err,result) {
+            if(err)
+            {result = {
+                code: 300,
+                msg: '写入数据失败'};
+                console.log(err)
+            }
+            else
+            {result = {
+                code: 200,
+                msg: '写入数据成功'}
+            }
+            res.json(result);
+        });
+        connection.release();
+    })
+
+});
 module.exports = router;
