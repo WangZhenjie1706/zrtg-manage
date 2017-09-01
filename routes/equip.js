@@ -15,3 +15,9 @@ router.get('/', function(req, res) {
 });
 module.exports = router;
 
+//shu yi
+//https://www.humblebundle.com/gift?key=caRNBMC8q7253q7s
+//https://www.humblebundle.com/gift?key=wbA6K8X7zffuFpEV
+//https://www.humblebundle.com/gift?key=7FRmt3wXRKK2eHfR
+//fanerdeng
+//https://www.humblebundle.com/gift?key=qrYTCSNaDWfnZGvk
